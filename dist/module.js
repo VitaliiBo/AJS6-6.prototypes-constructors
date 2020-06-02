@@ -5,31 +5,38 @@ require("core-js/modules/es.function.name");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = Character;
+exports.Character = Character;
 
+/* eslint-disable linebreak-style */
+
+/* eslint-disable no-extend-native */
+
+/* eslint-disable no-useless-catch */
+
+/* eslint-disable import/prefer-default-export */
 function Character(name, type) {
   var types = {
-    'Bowman': {
+    Bowman: {
       attack: 25,
       defence: 25
     },
-    'Swordsman': {
+    Swordsman: {
       attack: 40,
       defence: 10
     },
-    'Magician': {
+    Magician: {
       attack: 10,
       defence: 40
     },
-    'Undead': {
+    Undead: {
       attack: 25,
       defence: 25
     },
-    'Zombie': {
+    Zombie: {
       attack: 40,
       defence: 10
     },
-    'Daemon': {
+    Daemon: {
       attack: 10,
       defence: 40
     }
@@ -49,18 +56,16 @@ function Character(name, type) {
     } else {
       throw new Error('Нет такого персонажа');
     }
+
+    this.health = 100;
+    this.level = 1;
+
+    Object.prototype.damage = function (points) {
+      if (this.health >= 0) {
+        this.health -= points * (1 - this.defence / 100);
+      }
+    };
   } catch (error) {
-    console.log(error);
+    throw error;
   }
-
-  this.health = 100;
-  this.level = 1;
-
-  Object.prototype.damage = function (points) {
-    if (this.health >= 0) {
-      this.health -= points * (1 - this.defence / 100);
-    }
-
-    console.log(this);
-  };
 }
