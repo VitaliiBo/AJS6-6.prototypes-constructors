@@ -44,12 +44,15 @@ export function Character(name, type) {
     }
     this.health = 100;
     this.level = 1;
-    Object.prototype.damage = function (points) {
-      if (this.health >= 0) {
-        this.health -= points * (1 - this.defence / 100);
-      }
-    };
   } catch (error) {
     throw error;
   }
 }
+Character.prototype = {
+  // eslint-disable-next-line object-shorthand
+  damage: function (points) {
+    if (this.health >= 0) {
+      this.health -= points * (1 - this.defence / 100);
+    }
+  },
+};
